@@ -1,0 +1,59 @@
+1）kernel 竖屏
+选中：
+make menuconfig ---> Device Drivers  ---> Graphics support  ---> Console display driver support  ---> Framebuffer Console Rotation
+
+
+make menuconfig
+                ---> Boot options  启动参数修改为：console=ttySAC2,115200 init=/linuxrc fbcon=rotate:1
+
+
+      说明： fbcon=rotate:<n>
+
+        This option changes the orientation angle of the console display. The
+        value 'n' accepts the following:
+
+          0 - normal orientation (0 degree)
+          1 - clockwise orientation (90 degrees)
+          2 - upside down orientation (180 degrees)
+          3 - counterclockwise orientation (270 degrees)
+————————————————
+版权声明：本文为CSDN博主「alifrank」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/alifrank/article/details/48950197
+
+
+选中：
+make kernel_menuconfig ---> 
+	Device Drivers  ---> 
+		Graphics support  ---> 
+			Console display driver support  ---> 
+				Framebuffer Console support  --->
+					Framebuffer Console Rotation
+修改启动参数：
+	在启动参数中添加：fbcon=rotate:<n>
+说明： fbcon=rotate:<n>
+0 - normal orientation (0 degree)
+1 - clockwise orientation (90 degrees)
+2 - upside down orientation (180 degrees)
+3 - counterclockwise orientation (270 degrees)
+
+
+
+1.挂载
+
+mount -t debugfs debug /proc/sys/debug
+cd /proc/sys/debug/sunxi_pinctrl
+2.进入挂载的路径
+
+cd /proc/sys/debug/sunxi_pinctrl
+
+3.比如要修改PE8 则将PE8写到sunxi_pin里
+
+echo PE8 > sunxi_pin
+
+4.如要修改PE8对应的参数，则将想要的参数写到对应的节点
+
+echo PE8 1 > pull 表示拉高
+
+echo PE8 2 > dlevel 表示驱动能力改为2
+
+echo PE8 3 > function 表示功能改为3
