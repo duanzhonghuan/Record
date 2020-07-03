@@ -36,7 +36,7 @@ make kernel_menuconfig --->
 2 - upside down orientation (180 degrees)
 3 - counterclockwise orientation (270 degrees)
 
-
+https://github.com/XradioTech/xradio-skylark-sdk
 
 1.挂载
 
